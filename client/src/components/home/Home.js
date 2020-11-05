@@ -1,15 +1,15 @@
 import Main from '../template/Main';
+import { Link } from 'react-router-dom';
 
 export default function Home(props){
 	return(
 		<Main icon="home" title="Início" 
-      subtitle="Lorem ipsum dolor sit 
-      amet consectetur adipisicing elit">
+      subtitle="Aplicação que simula cadastro de usuários">
       <div className="display-4">Bem Vindo!</div>
       <hr />
       <p className="mb-0">
-      	Lorem ipsum dolor, sit amet consectetur, adipisicing elit. 
-      	Pariatur quidem illo minus maiores explicabo, inventore repellendus molestiae autem animi harum.
+      	Aplicação que simula cadastro de usuários. Vá para 
+        <Link to="/users" className="link">Usuários</Link>.
       </p>
     </Main>
 	);

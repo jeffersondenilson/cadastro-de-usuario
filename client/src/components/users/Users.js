@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Main from '../template/Main';
 import UsersForm from './UsersForm';
 import UsersTable from './UsersTable';
@@ -27,7 +27,7 @@ export default function Users(props){
 
 	const save = () => {
 		const method = user.id ? 'put' : 'post';
-		const url = users.id ? `/users/${user.id}` : '/users';
+		const url = user.id ? `/users/${user.id}` : '/users';
 
 		axios[method](url, user)
 			.then(res => {
@@ -51,7 +51,6 @@ export default function Users(props){
 	const removeUser = user => {
 		axios.delete(`/users/${user.id}`)
 			.then(res => {
-				console.log('remove', res.data);
 				const newList = getUpdatedList(user, false);
 				setList(newList);
 			})
@@ -61,7 +60,7 @@ export default function Users(props){
 	return (
 		<Main icon="users" title="Usuários" subtitle="Cadastro de usuários">
 			<UsersForm user={user} change={changeUser} save={save} clear={clear} />
-			<UsersTable list={list} edit={loadUser} remove={removeUser} />
+			<UsersTable list={list} edit={editUser} remove={removeUser} />
 		</Main>
 	);
 }
